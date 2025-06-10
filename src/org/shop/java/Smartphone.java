@@ -13,4 +13,11 @@ public class Smartphone extends Product {
         this.imei = imei;
         this.memory = memory;
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Inserito telefono: '%s', del brand: %s, con prezzo: %.2f, iva: %.2f, IMEI: %s, memoria: %d",
+                super.getName(), super.getBrand(), super.getPrice(), super.getIva(), this.imei, this.memory);
+    }
 }

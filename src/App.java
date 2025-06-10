@@ -17,6 +17,8 @@ public class App {
 
             switch (userChoise) {
                 case 1:
+                    input.nextLine();
+
                     System.out.println("Aggiungi nome telefono:");
                     String nome = input.nextLine();
 
@@ -35,6 +37,9 @@ public class App {
                     System.out.println("Aggiungi memoria telefono:");
                     int memoria = input.nextInt();
 
+                    Smartphone newPhone = new Smartphone(nome, brand, prezzo, iva, IMEI, memoria);
+
+                    System.out.println(newPhone);
                     break;
 
                 case 2:
@@ -46,6 +51,6 @@ public class App {
             }
 
         } while (userChoise != 0);
-
+        input.close();
     }
 }
