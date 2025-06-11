@@ -41,7 +41,7 @@ public class App {
                     int phoneMemory = input.nextInt();
 
                     Smartphone newPhone = new Smartphone(phoneName, phoneBrand, phonePrice, phoneIva, phoneIMEI,
-                            phoneMemory);
+                            phoneMemory, false);
 
                     System.out.println(newPhone);
                     break;
@@ -81,7 +81,7 @@ public class App {
                     int tvDepth = input.nextInt();
 
                     Televisions newTv = new Televisions(tvName, tvBrand, tvPrice, tvIva, isSmart, tvHeight, tvWidth,
-                            tvDepth);
+                            tvDepth, false);
 
                     System.out.println(newTv);
 
@@ -115,7 +115,7 @@ public class App {
                     }
                     isWireless = input.nextBoolean();
 
-                    Headphones newHp = new Headphones(hpColor, isWireless, hpName, hpBrand, hpPrice, hpIva);
+                    Headphones newHp = new Headphones(hpColor, isWireless, hpName, hpBrand, hpPrice, hpIva, false);
 
                     System.out.println(newHp);
 

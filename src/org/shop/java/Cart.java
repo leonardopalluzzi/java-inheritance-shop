@@ -30,20 +30,27 @@ public class Cart {
 
         // ricopio temp array in array originale
         this.cart = tempArr;
+
+        setTotal(this.cart);
     }
 
     public BigDecimal getTotal() {
         return this.total;
     }
 
+    public void setTotal(Product[] products) {
+        for (int i = 0; i < products.length; i++) {
+            this.total = total.add(products[i].getTaxedPrice());
+
+        }
+    }
+
     @Override
     public String toString() {
         String stringCart = "";
-
         if (this.cart.length > 0) {
             for (int i = 0; i < this.cart.length; i++) {
                 stringCart += "\n Nome:" + cart[i].getName() + " | ";
-                this.total = total.add(cart[i].getTaxedPrice());
             }
         } else {
             return stringCart = "Nessun prodotto nel carrello" + "\nTotale: " + getTotal();
@@ -55,6 +62,12 @@ public class Cart {
         Cart cart = new Cart(new Product[0]);
         int userChoise = -1;
         Scanner input = new Scanner(System.in);
+
+        boolean hasCard;
+        do {
+            System.out.println("Hai la carta fedelta? (true/false):");
+            hasCard = input.nextBoolean();
+        } while (hasCard != true && hasCard != false);
 
         do {
 
@@ -86,7 +99,7 @@ public class Cart {
                     int phoneMemory = input.nextInt();
 
                     Smartphone newPhone = new Smartphone(phoneName, phoneBrand, phonePrice, phoneIva, phoneIMEI,
-                            phoneMemory);
+                            phoneMemory, hasCard);
                     cart.setItem(newPhone);
 
                     System.out.println(newPhone);
@@ -127,7 +140,7 @@ public class Cart {
                     int tvDepth = input.nextInt();
 
                     Televisions newTv = new Televisions(tvName, tvBrand, tvPrice, tvIva, isSmart, tvHeight, tvWidth,
-                            tvDepth);
+                            tvDepth, hasCard);
                     cart.setItem(newTv);
 
                     System.out.println(newTv);
@@ -162,7 +175,7 @@ public class Cart {
                     }
                     isWireless = input.nextBoolean();
 
-                    Headphones newHp = new Headphones(hpColor, isWireless, hpName, hpBrand, hpPrice, hpIva);
+                    Headphones newHp = new Headphones(hpColor, isWireless, hpName, hpBrand, hpPrice, hpIva, hasCard);
                     cart.setItem(newHp);
 
                     System.out.println(newHp);

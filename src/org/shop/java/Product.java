@@ -5,19 +5,24 @@ import java.util.Random;
 
 public class Product {
 
-    private int code;
-    private String name;
-    private String brand;
-    private BigDecimal price;
-    private BigDecimal iva;
+    protected int code;
+    protected String name;
+    protected String brand;
+    protected BigDecimal price;
+    protected BigDecimal iva;
+    protected BigDecimal taxedPrice;
+    protected boolean hasCard;
 
-    public Product(String name, String brand, BigDecimal price, BigDecimal iva) {
+    public Product(String name, String brand, BigDecimal price, BigDecimal iva, boolean hasCard) {
         Random r = new Random();
         this.code = r.nextInt(5000);
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.iva = iva;
+        this.hasCard = hasCard;
+        setTaxedPrice(price, iva, hasCard);
+        this.taxedPrice = getTaxedPrice();
 
     }
 
@@ -55,8 +60,17 @@ public class Product {
     }
 
     public BigDecimal getTaxedPrice() {
-        BigDecimal taxedPrice = this.price.add(this.price.multiply(this.iva).divide(new BigDecimal(100)));
         return taxedPrice;
+    }
+
+    public void setTaxedPrice(BigDecimal price, BigDecimal iva, Boolean hasCard) {
+        if (!hasCard) {
+            this.taxedPrice = price.add(this.price.multiply(iva).divide(new BigDecimal(100)));
+        } else {
+            BigDecimal discount = price.multiply(new BigDecimal(2)).divide(new BigDecimal(100));
+            this.taxedPrice = price.add(this.price.multiply(iva).divide(new BigDecimal(100))).subtract(discount);
+        }
+
     }
 
     public void setIva(BigDecimal iva) {
