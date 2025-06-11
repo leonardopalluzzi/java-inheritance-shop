@@ -54,7 +54,18 @@ public class Product {
         return this.iva;
     }
 
+    public BigDecimal getTaxedPrice() {
+        BigDecimal taxedPrice = this.price.add(this.price.multiply(this.iva).divide(new BigDecimal(100)));
+        return taxedPrice;
+    }
+
     public void setIva(BigDecimal iva) {
         this.iva = iva;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Info prodotto '%s' :", this.name) + "\nPrezzo: " + getTaxedPrice() + ", " + "\nIva:"
+                + getIva() + ", " + "\nBrand: " + getBrand() + ", " + "\nCodice Prodotto: " + getCode();
     }
 }

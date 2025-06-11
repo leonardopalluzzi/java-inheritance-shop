@@ -18,4 +18,18 @@ public class Televisions extends Product {
         this.depth = depth;
     }
 
+    public String getDimensions() {
+        return String.format("%d x %d x %d", this.height,
+                this.width, this.depth);
+    }
+
+    public boolean getSmart() {
+        return this.smart;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nSmart: " + getSmart() + ", " + "\nDimensioni:" + getDimensions();
+    }
+
 }

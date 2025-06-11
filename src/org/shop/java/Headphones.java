@@ -32,7 +32,7 @@ public class Headphones extends Product {
 
     @Override
     public String toString() {
-        return super.toString() + "\nColore : " + getColor() + "/nWireless : " + getIsWireless();
+        return super.toString() + "\nColore : " + getColor() + "\nWireless : " + getIsWireless();
     }
 
 }

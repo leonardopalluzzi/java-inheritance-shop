@@ -10,14 +10,20 @@ public class Smartphone extends Product {
     public Smartphone(String name, String brand, BigDecimal price, BigDecimal iva, String imei, int memory) {
         super(name, brand, price, iva);
 
-        this.imei = imei;
+        this.imei = imei.toUpperCase();
         this.memory = memory;
+    }
+
+    public String getImei() {
+        return this.imei;
+    }
+
+    public int getMemory() {
+        return this.memory;
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "Inserito telefono: '%s', del brand: %s, con prezzo: %.2f, iva: %.2f, IMEI: %s, memoria: %d",
-                super.getName(), super.getBrand(), super.getPrice(), super.getIva(), this.imei, this.memory);
+        return super.toString() + "\nCodice IMEI: " + getImei() + "," + "\nMemoria:" + getMemory();
     }
 }
